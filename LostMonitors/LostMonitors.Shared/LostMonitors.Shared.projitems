@@ -15,12 +15,15 @@
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Engine\Deck.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Engine\Engine.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Engine\EnginePlayer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Engine\GlobalBoardTurn.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Engine\GlobalBoardState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)BoardState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Card.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)CardValue.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Change.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Destination.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Engine.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\ListCardExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IPlayer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Turn.cs" />

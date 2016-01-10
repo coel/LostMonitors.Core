@@ -12,7 +12,11 @@ namespace LostMonitors.Core.Engine
             Discards = new Dictionary<Destination, Card>(discards.Keys.Count);
             foreach (var destination in discards.Keys)
             {
-                Discards.Add(destination, discards[destination].Peek());
+                var cards = discards[destination];
+                if (cards.Any())
+                {
+                    Discards.Add(destination, cards.Peek());
+                }
             }
 
             Player1Expeditions = player1.GetExpeditions();

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace LostMonitors.Engine
+namespace LostMonitors.Core.Engine
 {
     internal class Deck
     {

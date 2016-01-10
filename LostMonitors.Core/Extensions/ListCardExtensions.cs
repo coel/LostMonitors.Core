@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace LostMonitors.Extensions
+namespace LostMonitors.Core.Extensions
 {
     public static class ListCardExtensions
     {

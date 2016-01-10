@@ -1,4 +1,4 @@
-﻿namespace LostMonitors.Engine
+﻿namespace LostMonitors.Core.Engine
 {
     public class GlobalBoardTurn
     {

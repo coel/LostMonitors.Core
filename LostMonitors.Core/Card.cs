@@ -1,4 +1,4 @@
-﻿namespace LostMonitors
+﻿namespace LostMonitors.Core
 {
     public class Card
     {

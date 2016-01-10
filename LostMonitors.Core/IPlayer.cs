@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace LostMonitors
+namespace LostMonitors.Core
 {
     public interface IPlayer
     {

@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using LostMonitors.Engine;
+using LostMonitors.Core.Engine;
 
-namespace LostMonitors
+namespace LostMonitors.Core
 {
     public class BoardState
     {

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace LostMonitors.Engine
+namespace LostMonitors.Core.Engine
 {
     public class GlobalBoardState
     {

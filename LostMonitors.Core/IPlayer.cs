@@ -4,7 +4,7 @@ namespace LostMonitors.Core
 {
     public interface IPlayer
     {
-        void Play(BoardState currentState, Turn theirMove, Func<Turn, Destination, Card> draw);
+        void Play(BoardState currentState, Turn theirMove, Func<Turn, Card> draw);
         string GetFriendlyName();
     }
 }

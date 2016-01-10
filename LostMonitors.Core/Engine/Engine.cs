@@ -51,11 +51,11 @@ namespace LostMonitors.Core.Engine
             Turn playerTurn = null;
             Card drawn = null;
 
-            Func<Turn, Destination, Card> draw = (turn, destination) =>
+            Func<Turn, Card> draw = (turn) =>
             {
                 if (playerTurn != null)
                 {
-                    throw new Exception("You can have more than one turn!");
+                    throw new Exception("You cannot have more than one turn!");
                 }
                 playerTurn = turn;
 

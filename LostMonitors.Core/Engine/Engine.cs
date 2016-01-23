@@ -102,6 +102,11 @@ namespace LostMonitors.Core.Engine
 
             _nextPlayer.Cards.Add(drawn);
 
+            if (_deck.Count == 0)
+            {
+                // TODO: end game
+            }
+
             _lastTurn = playerTurn;
 
             _nextPlayer = OtherPlayer(_nextPlayer);

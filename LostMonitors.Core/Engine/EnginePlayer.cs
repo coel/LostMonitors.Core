@@ -40,7 +40,7 @@ namespace LostMonitors.Core.Engine
             {
                 var top = destination.Peek().Value;
 
-                if (top != CardValue.Investment && top < card.Value)
+                if (top != CardValue.Investment && top == card.Value)
                 {
                     // Sanity check, it shouldn't end up here
                     throw new Exception(string.Format("Some how got two of {0}, {1}", card.Destination, card.Value));

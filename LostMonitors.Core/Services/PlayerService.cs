@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using LostMonitors.Core;
 
-namespace LostMonitors.Web
+namespace LostMonitors.Core.Services
 {
     public class Player
     {

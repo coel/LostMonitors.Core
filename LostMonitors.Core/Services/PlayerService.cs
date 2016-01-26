@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 
 namespace LostMonitors.Core.Services
 {
@@ -24,16 +27,37 @@ namespace LostMonitors.Core.Services
 
     public static class PlayerService
     {
-        private static readonly List<Player> Players; 
+        private static List<Player> Players; 
 
         static PlayerService()
         {
-            var type = typeof(IPlayer);
+            // Going to boldy assume you want to load all assemblies in current directory if not specified
+            var assemblyFolder = ConfigurationManager.AppSettings["LostMonitors.AssemblyFolder"] ?? Assembly.GetExecutingAssembly().Location;
+            LoadAssemblies(assemblyFolder);
+
+            Players = GetPlayersAppDomain();
+        }
+
+        private static void LoadAssemblies(string assemblyFolder)
+        {
+            var assemblies = new List<Assembly>();
+            var path = Path.GetDirectoryName(assemblyFolder);
+            
+            var dlls = Directory.GetFiles(path, "*.dll");
+            foreach (string dll in dlls)
+            {
+                assemblies.Add(Assembly.LoadFile(dll));
+            }
+        }
+
+        private static List<Player> GetPlayersAppDomain()
+        {
+            var type = typeof (IPlayer);
             var players = AppDomain.CurrentDomain.GetAssemblies()
                 .SelectMany(s => s.GetTypes())
                 .Where(p => type.IsAssignableFrom(p) && p.IsClass);
 
-            Players = players.Select(x => new Player(x)).ToList();
+            return players.Select(x => new Player(x)).ToList();
         }
 
         public static List<Player> GetPlayers()

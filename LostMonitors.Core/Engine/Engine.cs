@@ -8,6 +8,7 @@ namespace LostMonitors.Core.Engine
     {
         GlobalBoardState Init(IPlayer player1, IPlayer player2);
         GlobalBoardTurn Play();
+        Tuple<int, int> Score();
     }
 
     public class Engine : IEngine
@@ -46,8 +47,53 @@ namespace LostMonitors.Core.Engine
             return new GlobalBoardState(_player1, _player2, _deck, _discards);
         }
 
+        public Tuple<int, int> Score()
+        {
+            return new Tuple<int, int>(Score(_player1), Score(_player2));
+        }
+
+        private static int Score(EnginePlayer player)
+        {
+            var total = 0;
+            foreach (var expedition in player.GetExpeditions())
+            {
+                var score = 0;
+                var multiplier = 1;
+                var bonus = 0;
+
+                if (expedition.Value.Any())
+                {
+                    score -= 20;
+                }
+
+                if (expedition.Value.Count >= 10)
+                {
+                    bonus += 20;
+                }
+
+                foreach (var card in expedition.Value)
+                {
+                    if (card.Value == 0)
+                    {
+                        multiplier++;
+                    }
+                    else
+                    {
+                        score += (int) card.Value;
+                    }
+                }
+
+                total = total + (score * multiplier) + bonus;
+            }
+
+            return total;
+        }
+
         public GlobalBoardTurn Play()
         {
+            if (_deck.Count == 0)
+                return null;
+
             Turn playerTurn = null;
             Card drawn = null;
 
@@ -101,12 +147,7 @@ namespace LostMonitors.Core.Engine
             }
 
             _nextPlayer.Cards.Add(drawn);
-
-            if (_deck.Count == 0)
-            {
-                // TODO: end game
-            }
-
+            
             _lastTurn = playerTurn;
 
             _nextPlayer = OtherPlayer(_nextPlayer);

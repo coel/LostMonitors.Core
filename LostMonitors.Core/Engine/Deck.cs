@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 
 namespace LostMonitors.Core.Engine
@@ -7,7 +8,13 @@ namespace LostMonitors.Core.Engine
     internal class Deck
     {
         private readonly Stack<Card> _deck;
-        private static readonly Random Rng = new Random();
+        private static readonly Random Rng;
+
+        static Deck()
+        {
+            int seed;
+            Rng = int.TryParse(ConfigurationManager.AppSettings["LostMonitors.RandomSeed"], out seed) ? Rng = new Random(seed) : Rng = new Random();
+        }
 
         public Deck()
         {
